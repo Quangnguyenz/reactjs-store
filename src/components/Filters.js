@@ -75,6 +75,7 @@ const Filters = () => {
           <input type="checkbox" name="shipping" id="shipping" onChange={updateFilters} checked={shipping} />
         </div>
         {/* end of shipping */}
+        <button type="button" className='clear-btn' onClick={clearFilters}>clear filters</button>
       </form>
     </div>
   </Wrapper>
