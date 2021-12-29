@@ -13,7 +13,7 @@ const filter_reducer = (state, action) => {
   if (action.type === LOAD_PRODUCTS) {
     let maxPrice = action.payload.map((p) => p.price)
     maxPrice = Math.max(...maxPrice)
-    return { ...state, all_products: [...action.payload], filtered_products: [...action.payload], filters: { ...state.filters, max_price: maxPrice } }
+    return { ...state, all_products: [...action.payload], filtered_products: [...action.payload], filters: { ...state.filters, max_price: maxPrice, price: maxPrice } }
   }
   if (action.type === SET_GRIDVIEW) {
     return { ...state, grid_view: true }
@@ -72,6 +72,21 @@ const filter_reducer = (state, action) => {
         return product.company === company
       })
     }
+
+    // color
+    if (color !== 'all') {
+      tempProducts = tempProducts.filter((product) => {
+        return product.colors.find((c) => c === color)
+      })
+    }
+
+    // price
+    tempProducts = tempProducts.filter((product) => product.price <= price)
+    // shipping
+    if (shipping) {
+      tempProducts = tempProducts.filter((product) => product.shipping === true)
+    }
+
     return { ...state, filtered_products: tempProducts }
   }
   if (action.type === CLEAR_FILTERS) {
