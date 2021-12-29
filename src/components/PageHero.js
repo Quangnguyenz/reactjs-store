@@ -7,7 +7,7 @@ const PageHero = ({ title, product }) => {
       <h3>
         <Link to='/'>Home</Link>
         {product && <Link to='/products'>/Products</Link>}
-        /{title}
+        / {title}
       </h3>
     </Wrapper >
   )
