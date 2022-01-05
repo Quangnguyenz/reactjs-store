@@ -42,7 +42,9 @@ export const CartProvider = ({ children }) => {
   }
 
   // tooggle amount
-  const toggleAmount = (id, value) => { }
+  const toggleAmount = (id, value) => {
+    dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, payload: { id, value } })
+  }
 
   // clear cart
   const clearCart = () => {
@@ -50,6 +52,7 @@ export const CartProvider = ({ children }) => {
   }
 
   useEffect(() => {
+    dispatch({ type: COUNT_CART_TOTALS })
     localStorage.setItem('cart', JSON.stringify(state.cart))
   }, [state.cart])
 
